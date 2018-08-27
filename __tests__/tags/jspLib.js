@@ -46,7 +46,7 @@ describe('class JspLib', () => {
     });
 
     describe('getData()', () => {
-        it('should return the key\'s value', () => {
+        it('should return the key\'s value when the key is found', () => {
             const data = {
                 testKey: 'test'
             };
@@ -55,7 +55,7 @@ describe('class JspLib', () => {
             expect(result).toEqual('test');
         });
 
-        it('should return the fallback', () => {
+        it('should return the fallback when the key is not found', () => {
             const result = jspLib.getData({}, 'notKey', 'fallback');
 
             expect(result).toEqual('fallback');
@@ -83,7 +83,12 @@ describe('class JspLib', () => {
             };
             const result = jspLib.tagBody(node, 1, {});
 
-            expect(result.data.jspBody).toEqual('foobar');
+            expect(result).toEqual({
+                content: '',
+                data: {
+                    jspBody: 'foobar'
+                }
+            });
         });
     });
 
@@ -100,8 +105,10 @@ describe('class JspLib', () => {
             };
             const result = jspLib.tagDoBody(node, 1, {jspBody: 'foobar'});
 
-            expect(result.content).toEqual('foobar');
-            expect(typeof result.data.jspBody).toEqual('undefined');
+            expect(result).toEqual({
+                content: 'foobar',
+                data: {}
+            });
         });
     });
 
@@ -127,7 +134,12 @@ describe('class JspLib', () => {
             };
             const result = jspLib.tagAttribute(node, 1, {});
 
-            expect(result.data.testAttr).toEqual('foobar');
+            expect(result).toEqual({
+                content: '',
+                data: {
+                    testAttr: 'foobar'
+                }
+            });
         });
     });
 

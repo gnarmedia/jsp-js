@@ -42,10 +42,13 @@ describe('class TagLib', () => {
             const mockedTagLib = tagLib;
 
             mockedTagLib.tagMap = {
-                'test': (...params) => params
+                'test': jest.fn()
             };
 
-            expect(tagLib.handle('test', 'node', 'index', 'data')).toEqual(['node', 'index', 'data']);
+            tagLib.handle('test', 'node', 'index', 'data');
+
+            expect(tagLib.tagMap.test).toHaveBeenCalledTimes(1);
+            expect(tagLib.tagMap.test).toHaveBeenCalledWith('node', 'index', 'data');
         });
     });
 

@@ -7,6 +7,19 @@ function tokrun(text) {
 }
 
 describe('Tokenizer', () => {
+    describe('constructor()', () => {
+        it('should call init()', () => {
+            const mockedTokenizer = new Tokenizer();
+
+            console.log(mockedTokenizer.init);
+
+            // mockedTokenizerClass.
+            const tokenizer = new Tokenizer();
+            
+
+        });
+    });
+
     describe('Basic HTML support', () => {
         it('Supports two-part tags', () => {
             let tokens = tokrun('<a>blah</a>');

@@ -23,8 +23,14 @@ describe('CoreLib', () => {
             1,
             data
         );
-        assert.equal(data.foo, 'bar');
-        assert.equal(result.data.foo, 'bar');
+
+        expect(data.foo).toEqual('bar');
+        expect(result).toEqual({
+            content: '',
+            data: {
+                foo: 'bar'
+            }
+        });
     });
 
     it('Interprets forEach loops', () => {
